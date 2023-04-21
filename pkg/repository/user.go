@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/gavrylenkoIvan/gonotes"
@@ -17,10 +18,10 @@ func NewUserRepo(db *sqlx.DB) *UserRepo {
 	}
 }
 
-func (r *UserRepo) CreateUser(user gonotes.User) (int, error) {
+func (r *UserRepo) CreateUser(user gonotes.User, code string) (int, error) {
 	var id int
-	query := fmt.Sprintf("INSERT INTO %s (username, email, password) values ($1, $2, $3) RETURNING id", users)
-	row := r.db.QueryRow(query, user.Username, user.Email, user.Password)
+	query := fmt.Sprintf("INSERT INTO %s (username, email, password, code) values ($1, $2, $3, $4) RETURNING id", users)
+	row := r.db.QueryRow(query, user.Username, user.Email, user.Password, code)
 	if err := row.Scan(&id); err != nil {
 		return 0, err
 	}
@@ -34,4 +35,23 @@ func (r *UserRepo) GetUser(email, password string) (gonotes.User, error) {
 	err := r.db.Get(&user, query, password, email)
 
 	return user, err
+}
+
+func (r *UserRepo) VerifyUser(userId int, code string) error {
+	query := fmt.Sprintf("UPDATE %s SET verified = true, code='' WHERE code = $1 AND id = $2", users)
+	exec, err := r.db.Exec(query, code, userId)
+	if err != nil {
+		return err
+	}
+
+	affected, err := exec.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	if affected == 0 {
+		return errors.New(zeroRowsAffected)
+	}
+
+	return nil
 }

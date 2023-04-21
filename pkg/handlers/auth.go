@@ -17,7 +17,8 @@ func (h *Handler) signUp(c *gin.Context) {
 		return
 	}
 
-	id, err := h.services.Authorization.CreateUser(input)
+	temp := tempCode(16)
+	id, err := h.services.Authorization.CreateUser(input, temp)
 	if err != nil {
 		utils.NewErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
@@ -25,7 +26,10 @@ func (h *Handler) signUp(c *gin.Context) {
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"id": id,
+		"ok": true,
 	})
+
+	sendEmail(input.Email, fmt.Sprintf("http://localhost:8080/auth/%d/verify/%s", id, temp), input.Username)
 }
 
 func (h *Handler) signIn(c *gin.Context) {

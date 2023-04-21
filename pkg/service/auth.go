@@ -35,7 +35,7 @@ type tokenClaims struct {
 func (s *AuthService) GenerateToken(email, password string) (string, error) {
 	user, err := s.repo.GetUser(email, generatePasswordHash(password))
 	if err != nil {
-		return "", err
+		return "", errors.New("wrong password or username")
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
@@ -69,10 +69,14 @@ func (s *AuthService) ParseToken(accessToken string) (int, error) {
 	return claims.UserId, nil
 }
 
-func (s *AuthService) CreateUser(input gonotes.User) (int, error) {
+func (s *AuthService) CreateUser(input gonotes.User, code string) (int, error) {
 	input.Password = generatePasswordHash(input.Password)
 
-	return s.repo.CreateUser(input)
+	return s.repo.CreateUser(input, code)
+}
+
+func (s *AuthService) VerifyUser(userId int, code string) error {
+	return s.repo.VerifyUser(userId, code)
 }
 
 func generatePasswordHash(password string) string {

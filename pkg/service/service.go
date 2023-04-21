@@ -8,10 +8,16 @@ import (
 type Authorization interface {
 	GenerateToken(username, password string) (string, error)
 	ParseToken(token string) (int, error)
-	CreateUser(input gonotes.User) (int, error)
+	CreateUser(input gonotes.User, code string) (int, error)
+	VerifyUser(userId int, code string) error
 }
 
-type Notes interface{}
+type Notes interface {
+	GetNotesByUser(id int) ([]gonotes.Note, error)
+	DeleteNote(id int, userId int) error
+	UpdateNote(id int, userId int, input gonotes.UpdateNoteStruct) error
+	CreateNote(userId int, input gonotes.Note) (int, error)
+}
 
 type Users interface{}
 
@@ -24,5 +30,6 @@ type Service struct {
 func NewService(repo *repository.Repository) *Service {
 	return &Service{
 		Authorization: NewAuthService(repo.Users),
+		Notes:         NewNotesService(repo.Notes),
 	}
 }

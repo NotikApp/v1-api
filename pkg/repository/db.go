@@ -8,8 +8,9 @@ import (
 )
 
 const (
-	users = "users"
-	notes = "notes"
+	users            = "users"
+	notes            = "notes"
+	zeroRowsAffected = "this note does not exist"
 )
 
 type Config struct {

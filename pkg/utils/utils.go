@@ -20,5 +20,5 @@ func NewErrorResponse(c *gin.Context, code int, err string) {
 		Ok:      false,
 		Message: err,
 	})
-	log.Fatal(err)
+	log.Println(err)
 }
