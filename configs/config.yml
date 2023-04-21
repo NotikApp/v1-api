@@ -1,0 +1,6 @@
+db:
+  port: "5432"
+  host: "localhost"
+  user: "postgres"
+  name: "postgres"
+  ssl: "disable"
