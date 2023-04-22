@@ -35,9 +35,12 @@ type tokenClaims struct {
 func (s *AuthService) GenerateToken(email, password string) (string, error) {
 	user, err := s.repo.GetUser(email, generatePasswordHash(password))
 	if err != nil {
-		return "", errors.New("wrong password or username")
+		return "", err
 	}
 
+	if !user.Verified {
+		return "", errors.New("your email isn`t verified!")
+	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(tokenTTL).Unix(),

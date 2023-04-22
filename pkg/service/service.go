@@ -6,7 +6,7 @@ import (
 )
 
 type Authorization interface {
-	GenerateToken(username, password string) (string, error)
+	GenerateToken(email, password string) (string, error)
 	ParseToken(token string) (int, error)
 	CreateUser(input gonotes.User, code string) (int, error)
 	VerifyUser(userId int, code string) error

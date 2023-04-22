@@ -31,7 +31,7 @@ func (r *UserRepo) CreateUser(user gonotes.User, code string) (int, error) {
 
 func (r *UserRepo) GetUser(email, password string) (gonotes.User, error) {
 	var user gonotes.User
-	query := fmt.Sprintf("SELECT * FROM %s u WHERE u.password = $1 AND u.email = $2", users)
+	query := fmt.Sprintf("SELECT u.password, u.email, u.username, u.verified FROM %s u WHERE u.password = $1 AND u.email = $2", users)
 	err := r.db.Get(&user, query, password, email)
 
 	return user, err
