@@ -25,7 +25,7 @@ func sendEmail(email, url, name, urlDelete string) error {
 	// Authentication.
 	auth := smtp.PlainAuth("", from, password, smtpHost)
 
-	t, err := template.ParseFiles("static\\index.html")
+	t, err := template.ParseFiles("static" + string(os.PathSeparator) + "index.html")
 	if err != nil {
 		fmt.Println(err)
 		return err
