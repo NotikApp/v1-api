@@ -29,7 +29,7 @@ func (h *Handler) signUp(c *gin.Context) {
 		"ok": true,
 	})
 
-	sendEmail(input.Email, fmt.Sprintf("http://localhost:8080/auth/%d/verify/%s", id, temp), input.Username, fmt.Sprintf("http://localhost:8080/auth/%d/verify/%s/undo", id, temp))
+	sendEmail(input.Email, fmt.Sprintf(url+"/auth/%d/verify/%s", id, temp), input.Username, fmt.Sprintf(url+"/auth/%d/verify/%s/undo", id, temp))
 }
 
 func (h *Handler) signIn(c *gin.Context) {

@@ -22,7 +22,7 @@ func (h *Handler) verifyUser(c *gin.Context) {
 		return
 	}
 
-	c.Redirect(http.StatusFound, "http://localhost:8080/")
+	c.Redirect(http.StatusFound, url)
 }
 
 func (h *Handler) undoUser(c *gin.Context) {
@@ -39,5 +39,5 @@ func (h *Handler) undoUser(c *gin.Context) {
 		return
 	}
 
-	c.Redirect(http.StatusFound, "http://localhost:8080/")
+	c.Redirect(http.StatusFound, url)
 }
