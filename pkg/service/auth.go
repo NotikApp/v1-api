@@ -72,7 +72,7 @@ func (s *AuthService) ParseToken(accessToken string) (int, error) {
 	return claims.UserId, nil
 }
 
-func (s *AuthService) CreateUser(input gonotes.User, code string) (int, error) {
+func (s *AuthService) CreateUser(input gonotes.SignUpInput, code string) (int, error) {
 	input.Password = generatePasswordHash(input.Password)
 
 	return s.repo.CreateUser(input, code)
@@ -80,6 +80,10 @@ func (s *AuthService) CreateUser(input gonotes.User, code string) (int, error) {
 
 func (s *AuthService) VerifyUser(userId int, code string) error {
 	return s.repo.VerifyUser(userId, code)
+}
+
+func (s *AuthService) DeleteUser(userId int, code string) error {
+	return s.repo.DeleteUser(userId, code)
 }
 
 func generatePasswordHash(password string) string {

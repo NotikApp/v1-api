@@ -8,15 +8,16 @@ import (
 type Authorization interface {
 	GenerateToken(email, password string) (string, error)
 	ParseToken(token string) (int, error)
-	CreateUser(input gonotes.User, code string) (int, error)
+	CreateUser(input gonotes.SignUpInput, code string) (int, error)
 	VerifyUser(userId int, code string) error
+	DeleteUser(userId int, code string) error
 }
 
 type Notes interface {
 	GetNotesByUser(id int) ([]gonotes.Note, error)
 	DeleteNote(id int, userId int) error
 	UpdateNote(id int, userId int, input gonotes.UpdateNoteStruct) error
-	CreateNote(userId int, input gonotes.Note) (int, error)
+	CreateNote(userId int, input gonotes.Note) (gonotes.Note, error)
 }
 
 type Users interface{}

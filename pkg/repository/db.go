@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"fmt"
+	"os"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
@@ -23,10 +23,7 @@ type Config struct {
 }
 
 func InitDB(config Config) (*sqlx.DB, error) {
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s",
-		config.Host, config.User, config.Password, config.DBName, config.Port, config.SSL)
-
-	db, err := sqlx.Open("postgres", dsn)
+	db, err := sqlx.Connect("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		return nil, err
 	}

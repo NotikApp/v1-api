@@ -46,11 +46,13 @@ func main() {
 	if err != nil {
 		logger.Fatal(err.Error())
 	}
+
 	repos := repository.NewRepository(db)
 	service := service.NewService(repos)
 	handler := handlers.NewHandler(service)
 	server := handler.InitRoutes()
-	server.Run(":8080")
+
+	server.Run(":" + os.Getenv("PORT"))
 }
 
 func initConfig() error {

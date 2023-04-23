@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"github.com/gavrylenkoIvan/gonotes/pkg/service"
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,10 +16,16 @@ func NewHandler(services *service.Service) *Handler {
 	}
 }
 
-func (h *Handler) InitRoutes() *gin.Engine {
-	router := gin.New()
+const (
+	invCred = "invalid input body! Check your credentials and try again"
+)
 
-	router.Use(gin.Logger())
+func (h *Handler) InitRoutes() *gin.Engine {
+	router := gin.Default()
+
+	router.Use(static.Serve("/", static.LocalFile("dist", false)))
+	router.Use(static.Serve("/assets", static.LocalFile("dist\\assets", false)))
+	router.Use(static.Serve("/favicon.ico", static.LocalFile("dist\\favicon.ico", false)))
 
 	auth := router.Group("/auth")
 	{
@@ -27,12 +34,13 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		verify := auth.Group("/:user_id/verify")
 		{
 			verify.GET("/:token", h.verifyUser)
+			verify.GET("/:token/undo", h.undoUser)
 		}
 	}
 
 	api := router.Group("/api", h.userIdentity)
 	{
-		notes := api.Group("/notes")
+		notes := api.Group("/notes", h.userIdentity)
 		{
 			notes.GET("/", h.getAllNotes)
 			notes.POST("/", h.createNote)

@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func sendEmail(email, url, name string) error {
+func sendEmail(email, url, name, urlDelete string) error {
 
 	from := "notik.fun@gmail.com"
 	password := os.Getenv("EMAIL_PASSWORD")
@@ -37,11 +37,13 @@ func sendEmail(email, url, name string) error {
 	body.Write([]byte(fmt.Sprintf("Subject: %s, verify your account \n%s\n\n", name, mimeHeaders)))
 
 	t.Execute(&body, struct {
-		Url  string
-		Name string
+		Url       string
+		Name      string
+		UrlDelete string
 	}{
-		Name: name,
-		Url:  url,
+		Name:      name,
+		Url:       url,
+		UrlDelete: urlDelete,
 	})
 
 	// Sending email.

@@ -10,10 +10,10 @@ import (
 )
 
 func (h *Handler) signUp(c *gin.Context) {
-	var input gonotes.User
+	var input gonotes.SignUpInput
 
 	if err := c.BindJSON(&input); err != nil {
-		utils.NewErrorResponse(c, http.StatusBadRequest, fmt.Sprintf("invalid input body: %s", err.Error()))
+		utils.NewErrorResponse(c, http.StatusBadRequest, invCred)
 		return
 	}
 
@@ -29,14 +29,14 @@ func (h *Handler) signUp(c *gin.Context) {
 		"ok": true,
 	})
 
-	sendEmail(input.Email, fmt.Sprintf("http://localhost:8080/auth/%d/verify/%s", id, temp), input.Username)
+	sendEmail(input.Email, fmt.Sprintf("http://localhost:8080/auth/%d/verify/%s", id, temp), input.Username, fmt.Sprintf("http://localhost:8080/auth/%d/verify/%s/undo", id, temp))
 }
 
 func (h *Handler) signIn(c *gin.Context) {
-	var input gonotes.User
+	var input gonotes.SignInInput
 
 	if err := c.BindJSON(&input); err != nil {
-		utils.NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		utils.NewErrorResponse(c, http.StatusBadRequest, invCred)
 		return
 	}
 

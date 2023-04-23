@@ -27,6 +27,6 @@ func (s *NotesService) UpdateNote(id int, userId int, input gonotes.UpdateNoteSt
 	return s.repo.UpdateNote(id, userId, input)
 }
 
-func (s *NotesService) CreateNote(userId int, input gonotes.Note) (int, error) {
+func (s *NotesService) CreateNote(userId int, input gonotes.Note) (gonotes.Note, error) {
 	return s.repo.CreateNote(userId, input)
 }

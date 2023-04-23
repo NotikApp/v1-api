@@ -5,16 +5,27 @@ import "errors"
 type User struct {
 	ID       int    `json:"id"`
 	Username string `json:"username" binding:"required"`
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required,min=12,max=20"`
+	Verified bool   `json:"verified"`
+}
+
+type SignInInput struct {
 	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required"`
-	Verified bool   `json:"verified"`
+}
+
+type SignUpInput struct {
+	Username string `json:"username" binding:"required"`
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required,min=12,max=20"`
 }
 
 type Note struct {
 	ID        int    `json:"id"`
 	Title     string `json:"title" binding:"required"`
 	Text      string `json:"text" binding:"required"`
-	Important bool   `json:"important" binding:"required"`
+	Important bool   `json:"important"`
 	Tags      string `json:"tags" binding:"required"`
 	UserId    int    `json:"user_id" db:"user_id"`
 }
