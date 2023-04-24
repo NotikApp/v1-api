@@ -1,6 +1,0 @@
-db:
-  port: "5432"
-  host: "ec2-54-73-22-169.eu-west-1.compute.amazonaws.com"
-  user: "uqwsmksnysawgh"
-  name: "d2lomc55r0aql7"
-  ssl: "disable"

@@ -7,8 +7,6 @@ import (
 	"github.com/gavrylenkoIvan/gonotes/pkg/handlers"
 	"github.com/gavrylenkoIvan/gonotes/pkg/repository"
 	"github.com/gavrylenkoIvan/gonotes/pkg/service"
-	"github.com/joho/godotenv"
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
 
@@ -25,24 +23,7 @@ func init() {
 }
 
 func main() {
-	if err := godotenv.Load(); err != nil {
-		logger.Fatal(err.Error())
-	}
-
-	if err := initConfig(); err != nil {
-		logger.Fatal(err.Error())
-	}
-
-	dbPass := os.Getenv("DB_PASSWORD")
-	config := repository.Config{
-		Port:     viper.GetString("db.port"),
-		DBName:   viper.GetString("db.name"),
-		Host:     viper.GetString("db.host"),
-		User:     viper.GetString("db.user"),
-		Password: dbPass,
-		SSL:      viper.GetString("db.ssl"),
-	}
-	db, err := repository.InitDB(config)
+	db, err := repository.InitDB(os.Getenv("DATABASE_URL"))
 	if err != nil {
 		logger.Fatal(err.Error())
 	}
@@ -53,10 +34,4 @@ func main() {
 	server := handler.InitRoutes()
 
 	server.Run(":" + os.Getenv("PORT"))
-}
-
-func initConfig() error {
-	viper.AddConfigPath("configs")
-	viper.SetConfigName("config")
-	return viper.ReadInConfig()
 }
