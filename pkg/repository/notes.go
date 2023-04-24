@@ -74,7 +74,7 @@ func (r *NotesRepo) UpdateNote(id int, userId int, input gonotes.UpdateNoteStruc
 
 	if input.Tags != nil {
 		setValues = append(setValues, fmt.Sprintf("tags=$%d", argId))
-		args = append(args, *input.Important)
+		args = append(args, *input.Tags)
 		argId++
 	}
 
