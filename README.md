@@ -3,5 +3,5 @@
 </p>
 
 
-### Note taking app written with golang an vue 3
+## Note taking app written with golang an vue 3
 
