@@ -12,3 +12,13 @@
 * #### Set environment vars in .env file (those are really informative so I think you won't have any troubles)
 * #### Run 'make compose' command. After container built, run 'migrate up'.
 * #### Enjoy!
+
+---
+
+### Screenshots:
+
+![alt text](https://github.com/gavrylenkoIvan/gonotes/blob/master/images/main-page.png)
+
+![alt text](https://github.com/gavrylenkoIvan/gonotes/blob/master/images/add-note.png)
+
+![alt text](https://github.com/gavrylenkoIvan/gonotes/blob/master/images/notes.png)
