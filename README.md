@@ -1,7 +1,7 @@
 [![Docker build](https://img.shields.io/github/actions/workflow/status/gavrylenkoIvan/gonotes/docker-image.yml?branch=master&label=docker%20build&logo=github)](https://github.com/gavrylenkoIvan/gonotes/actions?query=workflow)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/gavrylenkoIvan/gonotes/go.yml?branch=master&label=build&logo=github)](https://github.com/gavrylenkoIvan/gonotes/actions?query=workflow)
 [![Go Report Card](https://goreportcard.com/badge/github.com/gavrylenkoIvan/gonotes)](https://goreportcard.com/report/github.com/gavrylenkoIvan/gonotes)
-![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/gavrylenkoIvan/gonotes/main)
+![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/gavrylenkoIvan/gonotes/master)
 ![Lines of code](https://img.shields.io/tokei/lines/github/gavrylenkoIvan/gonotes)
 <p align="center">
   <img src="https://github.com/gavrylenkoIvan/gonotes/blob/master/images/logo.png" />
