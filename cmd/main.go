@@ -7,6 +7,7 @@ import (
 	"github.com/gavrylenkoIvan/gonotes/pkg/handlers"
 	"github.com/gavrylenkoIvan/gonotes/pkg/repository"
 	"github.com/gavrylenkoIvan/gonotes/pkg/service"
+	"github.com/joho/godotenv"
 	"go.uber.org/zap"
 )
 
@@ -23,7 +24,11 @@ func init() {
 }
 
 func main() {
-	db, err := repository.InitDB(os.Getenv("DATABASE_URL"))
+	if err := godotenv.Load(); err != nil {
+		logger.Fatal(err.Error())
+	}
+
+	db, err := repository.InitDB(os.Getenv("psql_url"))
 	if err != nil {
 		logger.Fatal(err.Error())
 	}

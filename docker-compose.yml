@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  go-notik:
+    restart: always
+    build: ./
+    command: ./wait-for-postgres.sh db ./go-notik
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    environment:
+      - DB_PASSWORD=password
+      - psql_url=postgresql://postgres:password@db:5432/postgres?sslmode=disable
+      - GIN_MODE=release
+      
+  db:
+    restart: always
+    image: postgres:latest
+    volumes:
+    - ././database/postgres/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432

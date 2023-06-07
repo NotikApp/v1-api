@@ -10,7 +10,7 @@ import (
 
 func sendEmail(email, url, name, urlDelete string) error {
 
-	from := "notik.fun@gmail.com"
+	from := "kwik.library@gmail.com"
 	password := os.Getenv("EMAIL_PASSWORD")
 
 	// Receiver email address.

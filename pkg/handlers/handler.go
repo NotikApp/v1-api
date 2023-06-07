@@ -18,7 +18,7 @@ func NewHandler(services *service.Service) *Handler {
 
 const (
 	invCred = "invalid input body! Check your credentials and try again"
-	url     = "https://notik.herokuapp.com"
+	url     = "http://localhost:8080"
 )
 
 func (h *Handler) InitRoutes() *gin.Engine {
