@@ -24,6 +24,12 @@ COPY --from=builder /build/dist /build/dist
 # copy .env file, psql_url will be overrided in compose
 COPY --from=builder /build/.env /build/.env
 
+# copy email html files
+COPY --from=builder /build/static /build/static
+
+# copy migrations dir
+COPY --from=builder /build/schema /build/schema
+
 # install postgresql-client
 RUN apk update
 RUN apk add postgresql-client

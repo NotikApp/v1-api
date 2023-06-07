@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -82,7 +81,6 @@ func (h *Handler) updateNote(c *gin.Context) {
 
 func (h *Handler) createNote(c *gin.Context) {
 	userId, err := getUserId(c)
-	fmt.Println(userId)
 	if err != nil {
 		utils.NewErrorResponse(c, http.StatusUnauthorized, err.Error())
 		return

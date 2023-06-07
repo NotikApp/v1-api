@@ -100,7 +100,6 @@ func (r *NotesRepo) UpdateNote(id int, userId int, input gonotes.UpdateNoteStruc
 
 func (r *NotesRepo) CreateNote(userId int, input gonotes.Note) (gonotes.Note, error) {
 	var created gonotes.Note
-	fmt.Println(userId, input)
 	query := fmt.Sprintf("INSERT INTO %s (title, text, important, tags, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING id, title, text, important, tags, user_id", notes)
 	row := r.db.QueryRow(query, input.Title, input.Text, input.Important, input.Tags, userId)
 	err := row.Scan(&created.ID, &created.Title,

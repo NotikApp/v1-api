@@ -24,4 +24,6 @@ build-docker:
 
 compose:
 	docker-compose up --build go-notik
-	docker run -v /schema:/migrations --network host migrate/migrate -path=/migrations/ -database "$(POSTGRES_URL)" up
+	
+migrate-init:
+	docker run -v /schema:/schema --network host migrate/migrate -path=/schema/ -database "$(POSTGRES_URL)" up

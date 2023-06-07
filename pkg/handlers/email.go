@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
+	"log"
 	"net/smtp"
 	"os"
 )
@@ -27,7 +28,7 @@ func sendEmail(email, url, name, urlDelete string) error {
 
 	t, err := template.ParseFiles("static" + string(os.PathSeparator) + "index.html")
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return err
 	}
 
@@ -49,9 +50,9 @@ func sendEmail(email, url, name, urlDelete string) error {
 	// Sending email.
 	err = smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, body.Bytes())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return err
 	}
-	fmt.Println("Email Sent!")
+
 	return nil
 }

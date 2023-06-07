@@ -13,7 +13,7 @@ services:
       - DB_PASSWORD=password
       - psql_url=postgresql://postgres:password@db:5432/postgres?sslmode=disable
       - GIN_MODE=release
-      
+
   db:
     restart: always
     image: postgres:latest
@@ -24,3 +24,18 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - 5432:5432
+    
+  migrate:
+    image: migrate/migrate
+
+    depends_on:
+      - db
+
+    volumes:
+      - D:\!vscode-go-projs\go-notik\:/schema
+    # here instead of localhost as the host we use databaseservicename as that is the name we gave to the postgres service
+    command:
+      [ "-path", "/schema", "-database",  "postgresql://postgres:password@db:5432/postgres?sslmode=disable", "up" ]
+
+volumes:
+  pgdata:
