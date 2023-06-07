@@ -5,8 +5,6 @@
 
 ## Note taking app written with golang an vue 3
 
-___
-
 ### How to build it locally?
 
 * #### First of all, you will need [docker](https://www.docker.com) dowloaded and started on your pc.
