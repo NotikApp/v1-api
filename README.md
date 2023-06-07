@@ -1,4 +1,4 @@
-![Docker Automated build](https://img.shields.io/docker/automated/gavrylenkoIvan/gonotes)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/gavrylenkoIvan/gonotes)
 
 <p align="center">
   <img src="https://github.com/gavrylenkoIvan/gonotes/blob/master/images/logo.png" />
