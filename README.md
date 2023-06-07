@@ -1,4 +1,4 @@
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/gavrylenkoIvan/gonotes)
+[![Docker build](https://img.shields.io/github/actions/workflow/status/gavrylenkoIvan/gonotes/docker-image.yml?branch=master&label=docker%20build&logo=github)](https://github.com/gavrylenkoIvan/gonotes/actions?query=workflow)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/gavrylenkoIvan/gonotes/go.yml?branch=master&label=build&logo=github)](https://github.com/gavrylenkoIvan/gonotes/actions?query=workflow)
 [![Go Report Card](https://goreportcard.com/badge/github.com/gavrylenkoIvan/gonotes)](https://goreportcard.com/report/github.com/gavrylenkoIvan/gonotes)
 ![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/gavrylenkoIvan/gonotes/main)
