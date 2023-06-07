@@ -15,7 +15,7 @@
 
 ---
 
-<div style="margin-top:30px">
+<div style="margin-top:100px">
   ### Screenshots:
 
   ![alt text](https://github.com/gavrylenkoIvan/gonotes/blob/master/images/main-page.png)
