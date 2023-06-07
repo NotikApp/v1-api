@@ -1,4 +1,4 @@
-# Notik App
+# <center>Notik App</center>
 
 
 <p align="center">
