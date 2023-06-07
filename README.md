@@ -1,4 +1,6 @@
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/gavrylenkoIvan/gonotes)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/gavrylenkoIvan/gonotes//?branch=master&label=build&logo=github)](https://github.com/gavrylenkoIvan/gonotes/actions/workflows/go.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/gavrylenkoIvan/gonotes)](https://goreportcard.com/report/github.com/gavrylenkoIvan/gonotes)
 
 <p align="center">
   <img src="https://github.com/gavrylenkoIvan/gonotes/blob/master/images/logo.png" />
