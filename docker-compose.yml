@@ -10,8 +10,11 @@ services:
     depends_on:
       - db
     environment:
+      # db password to be used in wait-for-postgres.sh
       - DB_PASSWORD=password
+      # db url
       - psql_url=postgresql://postgres:password@db:5432/postgres?sslmode=disable
+      # set gin to release mode (turn off logging on start)
       - GIN_MODE=release
   db:
     restart: always
