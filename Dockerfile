@@ -8,6 +8,8 @@ COPY . .
 
 RUN go build -o go-notik cmd/main.go
 
+RUN GOBIN=/usr/local/bin/ go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+
 FROM alpine
 
 WORKDIR /build
@@ -29,6 +31,9 @@ COPY --from=builder /build/static /build/static
 
 # copy migrations dir
 COPY --from=builder /build/schema /build/schema
+
+# copy golang-migrate
+COPY --from=builder /usr/local/bin/ /usr/local/bin/
 
 # install postgresql-client
 RUN apk update

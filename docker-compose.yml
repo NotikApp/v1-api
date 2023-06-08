@@ -13,7 +13,6 @@ services:
       - DB_PASSWORD=password
       - psql_url=postgresql://postgres:password@db:5432/postgres?sslmode=disable
       - GIN_MODE=release
-
   db:
     restart: always
     image: postgres:latest
