@@ -4,6 +4,7 @@
 ![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/gavrylenkoIvan/gonotes/master)
 ![Lines of code](https://img.shields.io/tokei/lines/github/gavrylenkoIvan/gonotes)
 ![GitHub](https://img.shields.io/github/license/gavrylenkoIvan/gonotes)
+![GitHub last commit](https://img.shields.io/github/last-commit/gavrylenkoIvan/gonotes)
 
 <p align="center">
   <img src="https://github.com/gavrylenkoIvan/gonotes/blob/master/images/logo.png" />
