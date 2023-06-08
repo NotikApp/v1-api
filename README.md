@@ -20,7 +20,6 @@
 * #### To start container and init database, run: 
   ```sh
   make compose
-  make up
   ```
 * #### Enjoy!
 
