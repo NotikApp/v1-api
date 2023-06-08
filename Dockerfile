@@ -49,4 +49,4 @@ RUN apk add postgresql-client
 RUN chmod +x wait-for-postgres.sh
 
 # run service
-CMD [". /go-notik"]
+CMD ["./go-notik"]
