@@ -1,4 +1,4 @@
 .vscode
-.env
 database
 main.exe
+.env
