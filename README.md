@@ -19,7 +19,7 @@
 * #### Set environment vars in .env file (those are really informative so I think you won't have any troubles)
 * #### To start container and init database, run: 
   ```sh
-  make compose
+  $ make compose
   ```
 * #### Enjoy!
 
