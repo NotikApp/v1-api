@@ -6,6 +6,11 @@
 ![GitHub](https://img.shields.io/github/license/gavrylenkoIvan/gonotes)
 ![GitHub last commit](https://img.shields.io/github/last-commit/gavrylenkoIvan/gonotes)
 
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
 <p align="center">
   <img src="https://github.com/gavrylenkoIvan/gonotes/blob/master/images/logo.png" />
 </p>
