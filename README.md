@@ -3,6 +3,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/gavrylenkoIvan/gonotes)](https://goreportcard.com/report/github.com/gavrylenkoIvan/gonotes)
 ![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/gavrylenkoIvan/gonotes/master)
 ![Lines of code](https://img.shields.io/tokei/lines/github/gavrylenkoIvan/gonotes)
+![GitHub](https://img.shields.io/github/license/gavrylenkoIvan/gonotes)
+
 <p align="center">
   <img src="https://github.com/gavrylenkoIvan/gonotes/blob/master/images/logo.png" />
 </p>
