@@ -2,7 +2,6 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/gavrylenkoIvan/gonotes/go.yml?branch=master&label=build&logo=github)](https://github.com/gavrylenkoIvan/gonotes/actions?query=workflow)
 [![Go Report Card](https://goreportcard.com/badge/github.com/gavrylenkoIvan/gonotes)](https://goreportcard.com/report/github.com/gavrylenkoIvan/gonotes)
 ![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/gavrylenkoIvan/gonotes/master)
-![Lines of code](https://img.shields.io/tokei/lines/github/gavrylenkoIvan/gonotes)
 ![GitHub](https://img.shields.io/github/license/gavrylenkoIvan/gonotes)
 ![GitHub last commit](https://img.shields.io/github/last-commit/gavrylenkoIvan/gonotes)
 
