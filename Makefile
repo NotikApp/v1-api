@@ -5,11 +5,11 @@ POSTGRES_URL = ${psql_url}
 
 # drop migrations
 down:
-	migrate -path ./schema -database '$(POSTGRES_URL)' down
+	migrate -path ./schema -database $(POSTGRES_URL) down
 
 # aplly migrations to db
 up:
-	migrate -path ./schema -database '$(POSTGRES_URL)' up
+	migrate -path ./schema -database $(POSTGRES_URL) up
 
 # build golang service
 build:
@@ -23,7 +23,6 @@ run:
 # use for development. inits postgres
 psql-init:
 	docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) -d postgres
-	make up
 
 build-docker:
 	docker build -t go-notik .

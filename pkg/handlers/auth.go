@@ -29,7 +29,11 @@ func (h *Handler) signUp(c *gin.Context) {
 		"ok": true,
 	})
 
-	sendEmail(input.Email, fmt.Sprintf(url+"/auth/%d/verify/%s", id, temp), input.Username, fmt.Sprintf(url+"/auth/%d/verify/%s/undo", id, temp))
+	err = sendEmail(input.Email, fmt.Sprintf(url+"/auth/%d/verify/%s", id, temp), input.Username, fmt.Sprintf(url+"/auth/%d/verify/%s/undo", id, temp))
+	if err != nil {
+		utils.NewErrorResponse(c, http.StatusInternalServerError, invCred)
+		return
+	}
 }
 
 func (h *Handler) signIn(c *gin.Context) {

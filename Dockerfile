@@ -13,7 +13,6 @@ RUN go build -o go-notik cmd/main.go
 # install migare cli so we can use it in prod stage
 RUN GOBIN=/usr/local/bin/ go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
 
-
 # PROD STAGE
 # use alpine to reduce image`s size
 FROM alpine

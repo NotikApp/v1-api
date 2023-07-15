@@ -5,6 +5,8 @@ import (
 	"github.com/gavrylenkoIvan/gonotes/pkg/repository"
 )
 
+//go:generate mockgen -source=service.go -destination=mocks/mock.go
+
 type Authorization interface {
 	GenerateToken(email, password string) (string, error)
 	ParseToken(token string) (int, error)
