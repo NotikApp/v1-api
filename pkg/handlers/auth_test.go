@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"bytes"
+	"errors"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -18,10 +19,10 @@ func Test_SignUp(t *testing.T) {
 	type mockBehavior = func(*mock_service.MockAuthorization, gonotes.SignUpInput, string)
 
 	testTable := []struct {
-		name string
+		name                 string
 		input                gonotes.SignUpInput
-		tempCode string
-		inputBody string
+		tempCode             string
+		inputBody            string
 		mockBehavior         mockBehavior
 		expectedStatusCode   int
 		expectedResponseBody string
@@ -29,47 +30,62 @@ func Test_SignUp(t *testing.T) {
 		{
 			name: "Ok",
 			input: gonotes.SignUpInput{
-				Email: "test@gmail.com",
+				Email:    "test@gmail.com",
 				Password: "secret123456789",
 				Username: "test123",
 			},
-			tempCode: "WodTB2rJ8SobMgQ1",
+			tempCode:  "WodTB2rJ8SobMgQ1",
 			inputBody: `{"email":"test@gmail.com","password":"secret123456789","username":"test123"}`,
 			mockBehavior: func(ma *mock_service.MockAuthorization, in gonotes.SignUpInput, tempCode string) {
 				ma.EXPECT().CreateUser(in, tempCode).Return(1, nil)
 			},
-			expectedStatusCode: 200,
+			expectedStatusCode:   200,
 			expectedResponseBody: `{"id":1,"ok":true}`,
 		},
 		{
 			name: "Invalid password",
 			input: gonotes.SignUpInput{
-				Email: "test@gmail.com",
+				Email:    "test@gmail.com",
 				Password: "secret123",
 				Username: "test123",
 			},
-			tempCode: "WodTB2rJ8SobMgQ1",
+			tempCode:  "WodTB2rJ8SobMgQ1",
 			inputBody: `{"email":"test@gmail.com","password":"secret123","username":"test123"}`,
 			mockBehavior: func(ma *mock_service.MockAuthorization, in gonotes.SignUpInput, tempCode string) {
 				ma.EXPECT().CreateUser(in, tempCode).Return(1, nil).AnyTimes()
 			},
-			expectedStatusCode: http.StatusBadRequest,
+			expectedStatusCode:   http.StatusBadRequest,
 			expectedResponseBody: `{"ok":false,"message":"invalid input body"}`,
 		},
 		{
 			name: "Invalid email",
 			input: gonotes.SignUpInput{
-				Email: "test@gmail.com",
-				Password: "secret123",
+				Email:    "test",
+				Password: "secret12345678",
 				Username: "test123",
 			},
-			tempCode: "WodTB2rJ8SobMgQ1",
-			inputBody: `{"email":"test@gmail.com","password":"secret123","username":"test123"}`,
+			tempCode:  "WodTB2rJ8SobMgQ1",
+			inputBody: `{"email":"test","password":"secret12345678","username":"test123"}`,
 			mockBehavior: func(ma *mock_service.MockAuthorization, in gonotes.SignUpInput, tempCode string) {
 				ma.EXPECT().CreateUser(in, tempCode).Return(1, nil).AnyTimes()
 			},
-			expectedStatusCode: http.StatusBadRequest,
+			expectedStatusCode:   http.StatusBadRequest,
 			expectedResponseBody: `{"ok":false,"message":"invalid input body"}`,
+		},
+		{
+			name: "Service returned error",
+			input: gonotes.SignUpInput{
+				Email:    "test@gmail.com",
+				Password: "secret123456789",
+				Username: "test123",
+			},
+			tempCode:  "nrtR245jxOrsovFi",
+			inputBody: `{"email":"test@gmail.com","password":"secret123456789","username":"test123"}`,
+			mockBehavior: func(ma *mock_service.MockAuthorization, in gonotes.SignUpInput, tempCode string) {
+				ma.EXPECT().CreateUser(in, tempCode).Return(0, errors.New("test_error")).AnyTimes()
+			},
+			expectedStatusCode:   http.StatusInternalServerError,
+			expectedResponseBody: `{"ok":false,"message":"test_error"}`,
 		},
 	}
 
