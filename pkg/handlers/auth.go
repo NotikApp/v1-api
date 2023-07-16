@@ -17,23 +17,19 @@ func (h *Handler) signUp(c *gin.Context) {
 		return
 	}
 
-	temp := tempCode(16)
+	temp := TempCode(16)
 	id, err := h.services.CreateUser(input, temp)
 	if err != nil {
 		utils.NewErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
+	sendEmail(input.Email, fmt.Sprintf(url+"/auth/%d/verify/%s", id, temp), input.Username, fmt.Sprintf(url+"/auth/%d/verify/%s/undo", id, temp))
+
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"id": id,
 		"ok": true,
 	})
-
-	err = sendEmail(input.Email, fmt.Sprintf(url+"/auth/%d/verify/%s", id, temp), input.Username, fmt.Sprintf(url+"/auth/%d/verify/%s/undo", id, temp))
-	if err != nil {
-		utils.NewErrorResponse(c, http.StatusInternalServerError, invCred)
-		return
-	}
 }
 
 func (h *Handler) signIn(c *gin.Context) {
