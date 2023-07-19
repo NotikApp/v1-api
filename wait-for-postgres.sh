@@ -17,5 +17,6 @@ done
 # run migrations
 migrate -path /build/schema -database $psql_url up
 
+chmod +x go-notik
 # run go service
 exec $cmd

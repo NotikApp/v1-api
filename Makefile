@@ -14,7 +14,6 @@ up:
 # build golang service
 build:
 	set GOOS=linux&& set GOARCH=amd64&& set CGO_ENABLED=0 &&go build -o go-notik cmd/main.go
-	./go-notik
 
 # run golang service
 run:
@@ -28,5 +27,5 @@ build-docker:
 	docker build -t go-notik .
 
 # init docker container with compose
-compose:
+compose: build
 	docker-compose up --build go-notik
