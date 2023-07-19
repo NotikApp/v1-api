@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   go-notik:
@@ -20,7 +20,7 @@ services:
     restart: always
     image: postgres:latest
     volumes:
-    - ././database/postgres/data:/var/lib/postgresql/data
+      - ././database/postgres/data:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_HOST_AUTH_METHOD=trust

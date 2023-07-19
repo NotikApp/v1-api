@@ -13,8 +13,8 @@ up:
 
 # build golang service
 build:
-	go build cmd/main.go
-	./main
+	set GOOS=linux&& set GOARCH=amd64&& set CGO_ENABLED=0 &&go build -o go-notik cmd/main.go
+	./go-notik
 
 # run golang service
 run:
