@@ -8,7 +8,7 @@ ADD go.mod .
 COPY . .
 
 # build 
-RUN go build -o go-notik cmd/main.go
+RUN set GOOS=linux&& set GOARCH=amd64&& set CGO_ENABLED=0 &&go build -o go-notik cmd/main.go
 
 # install migare cli so we can use it in prod stage
 RUN GOBIN=/usr/local/bin/ go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest

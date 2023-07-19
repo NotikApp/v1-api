@@ -11,7 +11,7 @@ import (
 
 func sendEmail(email, url, name, urlDelete string) error {
 
-	from := "kwik.library@gmail.com"
+	from := os.Getenv("EMAIL")
 	password := os.Getenv("EMAIL_PASSWORD")
 
 	// Receiver email address.
