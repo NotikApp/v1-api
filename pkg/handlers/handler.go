@@ -17,7 +17,7 @@ func NewHandler(services *service.Service) *Handler {
 }
 
 const (
-	invCred = "invalid input body! Check your credentials and try again"
+	invCred = "invalid input body"
 	url     = "http://localhost:8080"
 )
 
