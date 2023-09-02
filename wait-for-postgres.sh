@@ -14,8 +14,7 @@ until PGPASSWORD=$DB_PASSWORD psql -h "$host" -U "postgres" -c '\q'; do
 done
 
 >&2 echo "Postgres is up - executing command"
-# run migrations
-migrate -path /build/schema -database $psql_url up
+docker run -v /build/schema:/migrations --network host migrate/migrate -path=/build/schema -database $psql_url up 2
 
 chmod +x go-notik
 # run go service
