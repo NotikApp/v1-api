@@ -1,9 +1,3 @@
-# BUILD STAGE
-FROM golang:alpine AS builder
-
-# install migrate cli so we can use it in prod stage
-RUN GOBIN=/usr/local/bin/ go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
-
 # PROD STAGE
 # use alpine to reduce image`s size
 FROM alpine
@@ -27,9 +21,6 @@ COPY static /build/static
 
 # copy migrations dir from build
 COPY schema /build/schema
-
-# copy golang-migrate
-COPY --from=builder /usr/local/bin/ /usr/local/bin/
 
 # install postgresql-client
 RUN apk update
